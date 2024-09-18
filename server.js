@@ -44,7 +44,7 @@ app.post('/compile', (req, res) => {
                 : `"${executable}"`;
 
             console.log(`Running command: ${command}`);
-            
+
             exec(command, (err, stdout, stderr) => {
                 // Cleanup after execution
                 [filename, executable, inputFile].forEach(file => {
