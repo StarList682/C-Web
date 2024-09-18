@@ -29,8 +29,10 @@ int main() {
         <div class="output-header">Output:</div>
         <pre id="output"></pre>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/addon/edit/closebrackets.min.js"></script>
     <script>
         const editor = CodeMirror.fromTextArea(document.getElementById('code'), {
             mode: 'text/x-c++src',        // Set to C++ mode
@@ -38,17 +40,10 @@ int main() {
             tabSize: 4,                   // Set the width of a tab character
             indentUnit: 4,                // Controls the number of spaces/tabs per indent level
             indentWithTabs: true,         // Indent using actual tab characters, not spaces
-            autoCloseBrackets: false,      // Auto-close brackets (For some reason it's not working, had to write manually :D)
-            matchBrackets: false,          // Highlight matching brackets
-            extraKeys: {
-                'Tab': function (cm) {
-                    cm.execCommand('insertTab'); // Make Tab insert a tab character
-                },
-                'Enter': function (cm) {
-                    cm.execCommand('newlineAndIndent'); // Default behavior for new line + indent
-                }
-            }
+            autoCloseBrackets: true,      // Enable auto-close brackets
+            matchBrackets: true,          // Highlight matching brackets
         });
+
     </script>
 
     <script src="scripts.js"></script>
