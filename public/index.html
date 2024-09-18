@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C++ Web Compiler</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://i.ibb.co/TvpPjbS/Logo.png" type="image/png">
 </head>
+<!-- CodeMirror CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.css">
+<!-- CodeMirror Theme -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/theme/dracula.min.css">
+
 <body>
-    <div class="header">
-        <span class="file-name">main.cpp</span>
-        <button class="run-btn">Run</button>
-        <span class="output-label">Output</span>
+    <div class="container">
+        <h1>C++ Web Compiler</h1>
+        <textarea id="code">//C++ compiler by Samvel Aleksanyan and Samvel Harutunyan. Order individual code here @StarList_saki0 (telegram).
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    // your code goes here
+    return 0;
+}</textarea>
+        <textarea id="input" placeholder="Input (optional)"></textarea>
+        <button onclick="compileCode()">Run</button>
+        <div class="output-header">Output:</div>
+        <pre id="output"></pre>
     </div>
-    <div class="editor-area">
-        <textarea id="code">// C++ code here</textarea>
-        <div class="right-panel">
-            <pre id="output"></pre>
-            <textarea id="input" placeholder="Input"></textarea>
-        </div>
-    </div>
-    <div class="footer">
-        <button class="clear-btn">Clear</button>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/clike/clike.min.js"></script>
+    <script>
+        const editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            mode: 'text/x-c++src',        // Set to C++ mode
+            lineNumbers: true,            // Show line numbers
+            tabSize: 4,                   // Set the width of a tab character
+            indentUnit: 4,                // Controls the number of spaces/tabs per indent level
+            indentWithTabs: true,         // Indent using actual tab characters, not spaces
+            autoCloseBrackets: false,      // Auto-close brackets (For some reason it's not working, had to write manually :D)
+            matchBrackets: false,          // Highlight matching brackets
+            extraKeys: {
+                'Tab': function (cm) {
+                    cm.execCommand('insertTab'); // Make Tab insert a tab character
+                },
+                'Enter': function (cm) {
+                    cm.execCommand('newlineAndIndent'); // Default behavior for new line + indent
+                }
+            }
+        });
+    </script>
+
     <script src="scripts.js"></script>
+    
 </body>
+
 </html>
